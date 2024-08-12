@@ -1,24 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import Shery from 'sheryjs';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Ip from './Pages/Ip';
+import Vd from './Pages/Vd';
+import Homepage from './Pages/Homepage';
+import IPProductPage from './Pages/IPProductPage'; // Ensure the correct import
+import VDProductPage from './Pages/VDProductPage'; // Ensure the correct import
+import Contact from './Pages/Contact';
+
+Shery.mouseFollower({
+  skew: true,
+  ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+  duration: 0.5,
+});
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Homepage />} />
+          <Route path='/' element={<Homepage />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/ipcamera' element={<Ip />} />
+          <Route path='/ipcamera/products/:id' element={<IPProductPage />} /> 
+          <Route path='/videodoor' element={<Vd />} />
+          <Route path='/videodoor/products/:id' element={<VDProductPage />} /> 
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
